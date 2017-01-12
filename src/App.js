@@ -15,6 +15,7 @@ import './fonts.css';
 /* Here we import all controllers we want to use in the app */
 import {HomeController}             from './controllers/HomeController.js';
 
+
 export class App extends ArvaApp {
 
     /* References to Dependency Injection created App and Controller instances, so they are not garbage collected. */
@@ -22,6 +23,7 @@ export class App extends ArvaApp {
 
     /* The controllers that will be used in the app. */
     static controllers = [HomeController];
+
 
 
     /* Define which DataSource to use */

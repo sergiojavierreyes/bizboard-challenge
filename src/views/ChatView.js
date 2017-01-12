@@ -2,7 +2,9 @@ import Surface              from 'famous/core/Surface.js';
 import {View}               from 'arva-js/core/View.js';
 import {layout, event}      from 'arva-js/layout/Decorators.js';
 
-export class HomeView extends View {
+
+export class ChatApp extends View {
+
     @layout.size(~100, ~25)
     @layout.stick.center()
 
@@ -30,4 +32,3 @@ export class HomeView extends View {
         console.log('updatedMessage')
     }
 }
-
