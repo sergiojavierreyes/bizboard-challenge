@@ -6,12 +6,12 @@ import {ChatMessages}      from '../models/ChatContent.js';
 export class HomeController extends Controller {
 
     Index(){
-        window.messages = this.messages = new ChatMessages();
+        this.posts = new ChatMessages();
 
         if(!this.homeView) {
-            this.homeView = new HomeView('world');
-            this.homeView.inputField.on('message', (input) => {
-                this.messages.add({content: input});
+            this.homeView = new HomeView();
+            this.homeView.singleInput.on('message', (input) => {
+            this.posts.add({text: input});
             });
         }
         return this.homeView;

@@ -14,16 +14,15 @@ export class HomeView extends View {
 
         /* Create the renderable components we want to show in this view. */
         this.renderables.chatView = new DataBoundScrollView({
-            layoutOptions: {
-                margins: [16, 16, 16, 16],
-                spacing: 8
-            },
-            itemTemplate: (post) => new ChatBubble(post),
+            itemTemplate: (post) => new AllMessages(post),
             dataStore: new ChatMessages()
         });
 
-        this.renderables.input = new SingleLineTextInput({placeholder: 'Enter message here'});
-        this.inputField = this.renderables.input;
+        this.renderables.input      = new InputSurface({placeholder: 'say Something'});
+		this.singleInput 	        = this.renderables.input;
+
+		this.renderables.button 	= new InputSurface({type: 'button',  value: 'Submit'});
+		this.singleButton 			= this.renderables.button;
 
         /* Tell famous-flex how to render our components in Famous. */
         this.layouts.push((context) => {
@@ -45,7 +44,7 @@ export class HomeView extends View {
     }
 }
 
-export class ChatBubble extends View {
+export class AllMessages extends View {
     constructor(message){
         super();
 
@@ -58,7 +57,7 @@ export class ChatBubble extends View {
         });
 
         this.renderables.content = new Surface({
-            content: message.mainMessage,
+            content: message.text,
             properties: {
                 color: 'rgba(0, 0, 0, 0.8)'
             }
