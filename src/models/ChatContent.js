@@ -1,9 +1,8 @@
-import {PrioritisedArray} 				from 'arva-js/data/PrioritisedArray.js'
-import {MainChat}                   	from './ChatApp.js';
+import {PrioritisedArray} 			from 'arva-js/data/PrioritisedArray.js'
+import {Message}                   	from './ChatApp.js';
 
-export class ChatMessages extends PrioritisedArray {
-    constructor() {
-        super(MainChat);
-    }
+export class Messages extends PrioritisedArray {
+     constructor(dataSource, dataSnapshot, options, modelOptions){ 
+    super(Message, dataSource, dataSnapshot, options, modelOptions);
+  }
 }
-

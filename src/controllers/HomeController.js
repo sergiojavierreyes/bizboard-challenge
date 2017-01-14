@@ -1,22 +1,24 @@
 import {Controller}        from 'arva-js/core/Controller.js';
 import {HomeView}          from '../views/HomeView.js';
-import {ChatMessages}      from '../models/ChatContent.js';
+import {Messages}      	   from '../models/ChatContent.js';
+import {Message}      	   from '../models/ChatApp.js';
 
 
 export class HomeController extends Controller {
 
 	Index(){
-		this.posts = new ChatMessages();
+		let posts = new Messages()
 
 		if(!this.homeView) {
-			this.homeView = new HomeView();
-			this.homeView.singleInput.on('post', (input) => {
-				this.posts.add({text: input});
-			});
+			this.homeView = new HomeView()
+			this.homeView.input.on('val', ()=>{ 
+				posts.add({text: this.homeView.input.getValue()})
+				console.log(this.homeView.input.getValue())
+			})
+			this.homeView.button.on('click', ()=>{ 
+				posts.add({text: this.homeView.input.getValue()})
+			})
 
-			// this.homeView.singleButton.on('click',  this.focus.bind(this));
-			// window.addEventListener('click', (event) =>{
-			// }.bind(this));
 		}
 		return this.homeView;
 	}
