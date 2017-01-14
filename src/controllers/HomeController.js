@@ -11,14 +11,12 @@ export class HomeController extends Controller {
 
 		if(!this.homeView) {
 			this.homeView = new HomeView()
-			this.homeView.input.on('val', ()=>{ 
+
+		/* Adds the new message from the inputfield to Firebase */
+			this.homeView.input.on('change', ()=>{ 
 				posts.add({text: this.homeView.input.getValue()})
 				console.log(this.homeView.input.getValue())
 			})
-			this.homeView.button.on('click', ()=>{ 
-				posts.add({text: this.homeView.input.getValue()})
-			})
-
 		}
 		return this.homeView;
 	}

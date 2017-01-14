@@ -8,26 +8,23 @@ import {DataBoundScrollView}    from 'arva-js/components/DataBoundScrollView';
 
 export class HomeView extends View {
 
+	//__________________Input Field
 
 	/* The size of this surface takes up the whole width of the view */
 	@layout.size(undefined, 50)
 	/* Docks the renderable to the bottom.  */
 	@layout.dock.bottom()
 
+	/* This is the input field renderable. */
+	input = new InputSurface({placeholder: 'Say Something'})
 
-	input 	 = new InputSurface({placeholder: 'Say Something'})
-
-	/* The size of this surface takes up the whole width of the view */
-	@layout.size(undefined, 35)
-	/* Docks the renderable to the bottom.  */
-	@layout.dock.bottom()
-
-	button   = new InputSurface({type: 'button',  value: 'Submit'})
-
+	
+	//__________________Message field
 
 	/* The size of this surface takes up the whole width of the view */
 	@layout.size(undefined, 300)
 
+	/* This is the renderable for the message field. */
 	messageBox = new DataBoundScrollView({
 		layout: CollectionLayout,
 		layoutOptions: {
