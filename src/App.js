@@ -23,16 +23,15 @@ export class App extends ArvaApp {
     /* The controllers that will be used in the app. */
     static controllers = [HomeController];
 
-
     /* Define which DataSource to use */
     static defaultDataSource() {
         /* Firebase initialization */
         firebase.initializeApp({
-            apiKey: '<api-key>',
-            authDomain: '<subdomain>.firebaseapp.com',
-            databaseURL: 'https://<subdomain>.firebaseio.com',
-            storageBucket: '<subdomain>.appspot.com'
-        });
+         apiKey: "AIzaSyBjVdOHbTT5G-ee6PK5EacqMCPJQysitbU",
+         authDomain: "chatapp-d13ab.firebaseapp.com",
+         databaseURL: "https://chatapp-d13ab.firebaseio.com",
+         storageBucket: "chatapp-d13ab.appspot.com"
+     });
         return new FirebaseDataSource('/', {});
     }
 
@@ -40,7 +39,7 @@ export class App extends ArvaApp {
      *  Called before the App is constructed and before the basic components (Router, Famous Context, Controllers,
      *  DataSource) have loaded.
      */
-    static initialize(){
+     static initialize(){
         /* Change initial route, view animation or something needed before we start */
         provide(DataSource)(App.defaultDataSource);
         this.start();
@@ -50,18 +49,18 @@ export class App extends ArvaApp {
      * Called after the Router, Famous Context, and Controllers have been instantiated,
      * but before any Controller method is executed by the Router.
      */
-    static loaded(){
+     static loaded(){
         /* Instantiate things you need before the router is executed here. For example:
          *
          * this.references.menu = Injection.get(Menu); */
-    }
+     }
 
     /**
      * Called by super class after all components (routing, controllers, views, etc.) have been loaded and the
      * app is up and running.
      */
-    static done(){
-    }
-}
+     static done(){
+     }
+ }
 
-document.addEventListener('deviceready', App.initialize.bind(App));
+ document.addEventListener('deviceready', App.initialize.bind(App));

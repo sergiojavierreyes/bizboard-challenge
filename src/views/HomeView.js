@@ -1,13 +1,41 @@
-import Surface              from 'famous/core/Surface.js';
-import {View}               from 'arva-js/core/View.js';
-import {layout, event}      from 'arva-js/layout/Decorators.js';
+import Surface              	from 'famous/core/Surface.js';
+import InputSurface             from 'famous/surfaces/InputSurface.js';
+import {View}               	from 'arva-js/core/View.js';
+import {layout, event}   	    from 'arva-js/layout/Decorators.js';
+import {Messages}           	from '../models/ChatContent.js';
+import {CollectionLayout}       from 'famous-flex/layouts/CollectionLayout';
+import {DataBoundScrollView}    from 'arva-js/components/DataBoundScrollView';
 
 export class HomeView extends View {
-    @layout.size(~100, ~25)
-    @layout.stick.center()
-    message = new Surface({content: `Hello ${this.options.welcomeName}`});
 
-    constructor(options = {}){
-        super(options);
-    }
+	//__________________Input Field
+
+	/* The size of this surface takes up the whole width of the view */
+	@layout.size(undefined, 50)
+	/* Docks the renderable to the bottom.  */
+	@layout.dock.bottom()
+
+	/* This is the input field renderable. */
+	input = new InputSurface({placeholder: 'Say Something'})
+
+	
+	//__________________Message field
+
+	/* The size of this surface takes up the whole width of the view */
+	@layout.size(undefined, 300)
+
+	/* This is the renderable for the message field. */
+	messageBox = new DataBoundScrollView({
+		layout: CollectionLayout,
+		layoutOptions: {
+			itemSize: [undefined, 30]
+		},
+		itemTemplate: (post) => new Surface({
+			content: post.text
+		}),
+		dataStore: new Messages()
+	})
+
 }
+
+
