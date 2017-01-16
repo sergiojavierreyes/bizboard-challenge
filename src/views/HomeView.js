@@ -11,18 +11,28 @@ export class HomeView extends View {
 	//__________________Input Field
 
 	/* The size of this surface takes up the whole width of the view */
-	@layout.size(undefined, 50)
+	@layout.size(undefined, 40)
 	/* Docks the renderable to the bottom.  */
 	@layout.dock.bottom()
 
 	/* This is the input field renderable. */
 	input = new InputSurface({placeholder: 'Say Something'})
 
+	//__________________Button 
+
+	/* The size of this surface takes up the whole width of the view */
+	@layout.size(undefined, 20)
+	/* Docks the renderable to the bottom.  */
+	@layout.dock.bottom()
+
+	/* This is the input field renderable. */
+	button = new InputSurface({type: 'button', value: 'Send'})
+
 	
 	//__________________Message field
 
-	/* The size of this surface takes up the whole width of the view */
-	@layout.size(undefined, 300)
+	/* The size of this surface takes up the whole size of the view */
+	@layout.fullSize()
 
 	/* This is the renderable for the message field. */
 	messageBox = new DataBoundScrollView({
@@ -30,12 +40,11 @@ export class HomeView extends View {
 		layoutOptions: {
 			itemSize: [undefined, 30]
 		},
-		itemTemplate: (post) => new Surface({
-			content: post.text
+		itemTemplate: (messages) => new Surface({
+			content: messages.text
 		}),
 		dataStore: new Messages()
 	})
-
 }
 
 
