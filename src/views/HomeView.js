@@ -11,40 +11,63 @@ export class HomeView extends View {
 	//__________________Input Field
 
 	/* The size of this surface takes up the whole width of the view */
-	@layout.size(undefined, 40)
+	@layout.size(undefined, 50)
 	/* Docks the renderable to the bottom.  */
 	@layout.dock.bottom()
 
 	/* This is the input field renderable. */
-	input = new InputSurface({placeholder: 'Say Something'})
+	input = new InputSurface({
+		placeholder: 'Say Something'
+	})
 
 	//__________________Button 
 
-	/* The size of this surface takes up the whole width of the view */
-	@layout.size(undefined, 20)
-	/* Docks the renderable to the bottom.  */
-	@layout.dock.bottom()
+
+	@layout.size(150,100)
+	@layout.dock.bottom(0, 50)
+	@layout.origin(1, -0.15)
+	@layout.align(1, -0.15)
 
 	/* This is the input field renderable. */
-	button = new InputSurface({type: 'button', value: 'Send'})
+	button = new InputSurface({
+		type: 'button', 
+		value: 'Send'
+	})
 
 	
 	//__________________Message field
 
-	/* The size of this surface takes up the whole size of the view */
-	@layout.fullSize()
+	@layout.size(200)
 
 	/* This is the renderable for the message field. */
 	messageBox = new DataBoundScrollView({
 		layout: CollectionLayout,
 		layoutOptions: {
-			itemSize: [undefined, 30]
+			itemSize: [undefined, 50],
+			spacing: 10
 		},
-		itemTemplate: (messages) => new Surface({
-			content: messages.text
+		itemTemplate: (post) => new Surface({
+			content: post.text,
+			properties: {
+				fontSize: '14pt',
+				color: '#fff',
+				backgroundColor: '#0B93F6',
+				borderRadius: '25px',
+				boxShadow: '0 0 3px #87CEEB',
+				padding: '10px 20px',
+				margin: '20px 20px'
+			}
 		}),
 		dataStore: new Messages()
 	})
+	
+	/* Translate the element in z space to the back */
+	@layout.translate(0, 0, -10)
+	@layout.fullSize()
+
+	background = new Surface({
+		properties: {
+			backgroundColor: 'GhostWhite'
+		}
+	});
 }
-
-
