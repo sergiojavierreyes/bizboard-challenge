@@ -16,6 +16,7 @@ export class HomeController extends Controller {
 			this.homeView.button.on('click', ()=>{ 
 				posts.add({text: this.homeView.input.getValue()})
 				console.log(this.homeView.input.getValue())
+				this.homeView.input.setValue('')
 			})
 
 			/* Adds the new message from the inputfield to Firebase by pressin on the Enter key */
@@ -23,6 +24,7 @@ export class HomeController extends Controller {
 				if (e.which == 13){
 					posts.add({text: this.homeView.input.getValue()})
 					console.log(this.homeView.input.getValue())
+					this.homeView.input.setValue('')
 				}
 			})
 			console.log(this.homeView.messageBox.options.dataStore)
