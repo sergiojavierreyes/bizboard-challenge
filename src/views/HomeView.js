@@ -22,7 +22,6 @@ export class HomeView extends View {
 
 	//__________________Button 
 
-
 	@layout.size(150,100)
 	@layout.dock.bottom(0, 50)
 	@layout.origin(1, -0.15)
@@ -37,7 +36,7 @@ export class HomeView extends View {
 	
 	//__________________Message field
 
-	@layout.size(200)
+	@layout.size(200,undefined)
 
 	/* This is the renderable for the message field. */
 	messageBox = new DataBoundScrollView({
@@ -55,7 +54,7 @@ export class HomeView extends View {
 				borderRadius: '25px',
 				boxShadow: '0 0 3px #87CEEB',
 				padding: '10px 20px',
-				margin: '20px 20px'
+				margin: '15px 15px'
 			}
 		}),
 		dataStore: new Messages()

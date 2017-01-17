@@ -8,7 +8,6 @@ export class HomeController extends Controller {
 
 	Index(){
 		let posts = new Messages()
-		
 
 		if(!this.homeView) {
 			this.homeView = new HomeView()
