@@ -1,44 +1,38 @@
 import Surface              	from 'famous/core/Surface.js';
 import InputSurface             from 'famous/surfaces/InputSurface.js';
+import CollectionLayout         from 'famous-flex/layouts/CollectionLayout';
+
 import {View}               	from 'arva-js/core/View.js';
-import {layout, event}   	    from 'arva-js/layout/Decorators.js';
-import {Messages}           	from '../models/ChatContent.js';
-import {CollectionLayout}       from 'famous-flex/layouts/CollectionLayout';
+import {layout, event}   	from 'arva-js/layout/Decorators.js';
 import {DataBoundScrollView}    from 'arva-js/components/DataBoundScrollView';
+
+import {Messages}           	from '../models/ChatContent.js';
 
 export class HomeView extends View {
 
 	//__________________Input Field
-
-	/* The size of this surface takes up the whole width of the view */
+    	@layout.translate(0, 0, 10)
 	@layout.size(undefined, 50)
-	/* Docks the renderable to the bottom.  */
 	@layout.dock.bottom()
-
-	/* This is the input field renderable. */
 	input = new InputSurface({
 		placeholder: 'Say Something'
-	})
+	});
 
-	//__________________Button 
-
-	@layout.size(150,100)
+	//__________________Button
+    	@layout.translate(0, 0, 10)
 	@layout.dock.bottom(0, 50)
 	@layout.origin(1, -0.15)
 	@layout.align(1, -0.15)
-
-	/* This is the input field renderable. */
+    	@layout.size(150,100)
 	button = new InputSurface({
 		type: 'button', 
 		value: 'Send'
-	})
+	});
 
 	
 	//__________________Message field
-
 	@layout.size(200,undefined)
-
-	/* This is the renderable for the message field. */
+	@layout.dock.fill() /* Makes this renderable take up all screen space up to the input field */
 	messageBox = new DataBoundScrollView({
 		layout: CollectionLayout,
 		layoutOptions: {
@@ -58,12 +52,12 @@ export class HomeView extends View {
 			}
 		}),
 		dataStore: new Messages()
-	})
+	});
 	
 	/* Translate the element in z space to the back */
 	@layout.translate(0, 0, -10)
 	@layout.fullSize()
-
+	@event.pipe('messageBox') /* Allows scrolling when pointer isn't on a message */
 	background = new Surface({
 		properties: {
 			backgroundColor: 'GhostWhite'
