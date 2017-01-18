@@ -11,7 +11,7 @@ import {Messages}           	from '../models/ChatContent.js';
 export class HomeView extends View {
 
 	//__________________Input Field
-    	@layout.translate(0, 0, 10)
+    @layout.translate(0, 0, 10)
 	@layout.size(undefined, 50)
 	@layout.dock.bottom()
 	input = new InputSurface({
