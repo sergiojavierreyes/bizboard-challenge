@@ -28,6 +28,8 @@ export class HomeController extends Controller {
 				}
 			})
 			console.log(this.homeView.messageBox.options.dataStore)
+
+			
 		}
 		return this.homeView;
 	}
