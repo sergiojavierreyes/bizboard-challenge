@@ -19,11 +19,11 @@ export class HomeView extends View {
 	});
 
 	//__________________Button
-    	@layout.translate(0, 0, 10)
+    @layout.translate(0, 0, 10)
 	@layout.dock.bottom(0, 50)
 	@layout.origin(1, -0.15)
 	@layout.align(1, -0.15)
-    	@layout.size(150,100)
+    @layout.size(150,100)
 	button = new InputSurface({
 		type: 'button', 
 		value: 'Send'
@@ -31,15 +31,16 @@ export class HomeView extends View {
 
 	
 	//__________________Message field
-	@layout.size(200,undefined)
+	@layout.size(200, undefined)
 	@layout.dock.fill() /* Makes this renderable take up all screen space up to the input field */
 	messageBox = new DataBoundScrollView({
 		layout: CollectionLayout,
 		layoutOptions: {
-			itemSize: [undefined, 50],
-			spacing: 10
+			spacing: 10,
+			margins: 20
 		},
 		itemTemplate: (post) => new Surface({
+			size:[200,true],
 			content: post.text,
 			properties: {
 				fontSize: '14pt',
@@ -51,6 +52,7 @@ export class HomeView extends View {
 				margin: '15px 15px'
 			}
 		}),
+		chatScrolling: true,
 		dataStore: new Messages()
 	});
 	
